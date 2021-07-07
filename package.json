@@ -1,0 +1,27 @@
+{
+  "name": "pack-local-dependencies",
+  "version": "1.0.0",
+  "description": "Installs dependencies included with a local path",
+  "homepage": "https://github.com/bluzi/pack-local-dependencies",
+  "bugs": {
+    "url": "https://github.com/bluzi/pack-local-dependencies/issues",
+    "email": "eliran013@gmail.com"
+  },
+  "author": {
+    "name": "bluzi",
+    "email": "eliran013@gmail.com",
+    "url": "https://github.com/bluzi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluzi/pack-local-dependencies.git"
+  },
+  "license": "ISC",
+  "bin": "./src/index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0"
+  }
+}
