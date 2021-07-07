@@ -11,7 +11,9 @@ const commands = [
   `npm run ${prefix}postinstall`,
 ]
 
-readDependencies()
+const dependencies = readDependencies()
+
+Object.entries(dependencies)
   .filter(([, version]) => isLocalPath(version))
   .forEach(([dependency, localPath]) => {
     const absolutePath = resolve(localPath.replace('file:', ''))
