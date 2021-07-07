@@ -18,9 +18,14 @@ Object.entries(dependencies)
   .forEach(([dependency, localPath]) => {
     const absolutePath = resolve(localPath.replace('file:', ''))
     console.log(`${dependency}: Executing 'npm i' in ${absolutePath}`)
-    commands.forEach((command) =>
-      execSync(command, {
-        stdio: 'inherit',
-        cwd: absolutePath,
-      }))
+    commands.forEach((command) => {
+      try {
+        execSync(command, {
+          stdio: 'inherit',
+          cwd: absolutePath,
+        })
+      } catch(e) {
+        console.warn(`${dependency}: command '${command}' exited with code ${e.status}`)
+      }
+    })
   })
