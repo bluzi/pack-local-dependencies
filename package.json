@@ -1,6 +1,6 @@
 {
   "name": "pack-local-dependencies",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Installs dependencies included with a local path",
   "homepage": "https://github.com/bluzi/pack-local-dependencies",
   "bugs": {
