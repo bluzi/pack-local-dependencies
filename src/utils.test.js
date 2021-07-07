@@ -1,4 +1,4 @@
-const test = require('ava');
+const test = require('ava')
 const { isLocalPath } = require('./utils')
 
 test('isLocalPath', t => {
@@ -22,4 +22,4 @@ test('isLocalPath', t => {
   t.deepEqual(localPaths, [
     'file:../dyl',
   ])
-});
+})
