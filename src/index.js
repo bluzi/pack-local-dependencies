@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { execSync } = require('child_process')
+const { existsSync } = require('fs')
 const { resolve } = require('path')
 
 const { readDependencies, isLocalPath } = require('./utils')
@@ -18,6 +19,11 @@ Object.entries({ ...dependencies, ...devDependencies })
   .filter(([, version]) => isLocalPath(version))
   .forEach(([dependency, localPath]) => {
     const absolutePath = resolve(localPath.replace('file:', ''))
+    if (!existsSync(absolutePath)) {
+      console.warn(`${dependency}: Could not find package in '${localPath}', assuming it was not installed`)
+      return
+    }
+
     console.log(`${dependency}: Executing 'npm i' in ${absolutePath}`)
     commands.forEach((command) => {
       try {
