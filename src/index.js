@@ -12,8 +12,9 @@ const commands = [
 ]
 
 const dependencies = readDependencies()
+const devDependencies = readDependencies('devDependencies')
 
-Object.entries(dependencies)
+Object.entries({ ...dependencies, ...devDependencies })
   .filter(([, version]) => isLocalPath(version))
   .forEach(([dependency, localPath]) => {
     const absolutePath = resolve(localPath.replace('file:', ''))

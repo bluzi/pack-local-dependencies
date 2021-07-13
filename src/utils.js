@@ -1,6 +1,6 @@
 const { readFileSync, existsSync } = require('fs')
 
-const readDependencies = () => {
+const readDependencies = (key = 'dependencies') => {
   const packageJsonPath = './package.json'
 
   if (!existsSync(packageJsonPath)) {
@@ -10,7 +10,7 @@ const readDependencies = () => {
   const packageJsonContents = readFileSync('package.json', 'utf-8')
   const packageJson = JSON.parse(packageJsonContents)
 
-  return packageJson?.dependencies || {}
+  return packageJson?.[key] || {}
 }
 
 const isLocalPath = (version) => {
