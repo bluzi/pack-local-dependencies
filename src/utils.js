@@ -50,7 +50,7 @@ const install = (path) => {
   try {
     execSync(command, {
       stdio: 'inherit',
-      cwd: absolutePath,
+      cwd: path,
     })
   } catch (e) {
     throw new Error(`command '${command}' exited with code ${e.status}`)
