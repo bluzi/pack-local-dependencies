@@ -14,13 +14,18 @@ Object.entries({ ...dependencies, ...devDependencies })
   .filter(([, version]) => isLocalPath(version))
   .forEach(([dependency, localPath]) => {
     const absolutePath = resolve(localPath.replace('file:', ''))
-    
+
     if (!existsSync(absolutePath)) {
       console.warn(`${dependency}: Could not find package in '${localPath}', assuming it was not installed`)
       return
     }
 
     console.log(`${dependency}: Executing 'npm i' in ${absolutePath}`)
-    install(absolutePath)
-    runNpmScript(absolutePath, `${prefix}postinstall`)
+
+    try {
+      install(absolutePath)
+      runNpmScript(absolutePath, `${prefix}postinstall`)
+    } catch (e) {
+      console.error(`${dependency} ('${localPath}'): ${e.message}`)
+    }
   })

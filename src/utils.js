@@ -39,7 +39,7 @@ const runNpmScript = (path, script) => {
         cwd: path,
       })
     } catch (e) {
-      console.warn(`${dependency}: command '${command}' exited with code ${e.status}`)
+      throw new Error(`command '${command}' exited with code ${e.status}`)
     }
   }
 }
@@ -53,7 +53,7 @@ const install = (path) => {
       cwd: absolutePath,
     })
   } catch (e) {
-    console.warn(`${dependency}: command '${command}' exited with code ${e.status}`)
+    throw new Error(`command '${command}' exited with code ${e.status}`)
   }
 }
 
